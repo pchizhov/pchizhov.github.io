@@ -1,5 +1,13 @@
+.favourites {
+    /*  что-то про мобилу и немобилу ширину  */
+    display: flex;
+    justify-content: center;
+}
+
+
 .city {
     width: 400px;
+    margin: 10px;
 }
 
 .city-name {
@@ -44,5 +52,8 @@
 .close {
     margin: 10px;
     float: right;
-    border-radius: 50%;
+    border: 0;
+    background-color: transparent;
+    background-image: url("images/close.svg");
+    background-repeat: no-repeat;
 }
