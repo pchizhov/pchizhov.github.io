@@ -1,9 +1,31 @@
+body {
+    font-family: "Iowan Old Style";
+}
+
+header, .favourites, .current-city {
+    display: flex;
+}
+
+header {
+    border: 1px solid indianred;
+    background-color: indianred;
+}
+
 .favourites {
     /*  что-то про мобилу и немобилу ширину  */
-    display: flex;
     justify-content: center;
 }
 
+.current-city {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logo {
+    width: 60px;
+    margin: 10px;
+}
 
 .city {
     width: 400px;
@@ -37,7 +59,7 @@
 
 .weather-data-line {
     margin-top: 5px;
-    background-color: cadetblue;
+    background-color: indianred;
     color: aliceblue;
     padding: 5px;
     border-radius: 5px;
@@ -51,6 +73,7 @@
 
 .close {
     margin: 10px;
+    width: 10px;
     float: right;
     border: 0;
     background-color: transparent;

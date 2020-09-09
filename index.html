@@ -3,10 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather</title>
 </head>
 <body>
-    <div class="favourites">
+    <header>
+        <img src="images/logo.svg" alt="weather logo" class="logo">
+        <h1>The Weather App</h1>
+    </header>
+    <div class="current-city">
+        <h1>Saint Petersburg</h1>
+    </div>
+    <section class="favourites">
         <div class="city">
             <h1 class="city-name">Moscow</h1>
             <h1 class="temperature">5˚C</h1>
@@ -37,7 +45,7 @@
         <div class="city">
             <h1 class="city-name">Moscow</h1>
             <h1 class="temperature">5˚C</h1>
-            <button class="close">x</button>
+            <input type="button" class="close">
             <div class="weather-data">
                 <div class="weather-data-line clearfix">
                     <p class="weather-data-title">Ветер</p>
@@ -61,6 +69,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </body>
 </html>
