@@ -9,6 +9,7 @@ header, .favourites, .current-city {
 
 header {
     background-color: indianred;
+    height: 85px;
 }
 
 .favourites {
