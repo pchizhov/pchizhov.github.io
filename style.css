@@ -2,7 +2,7 @@ body {
     font-family: "Iowan Old Style";
 }
 
-header, .favourites, .current-city {
+header, .favourites, .current-city, .current-city-main {
     display: flex;
     flex-wrap: wrap;
 }
@@ -12,8 +12,13 @@ header {
     height: 85px;
 }
 
-.favourites {
+.favourites, .current-city {
     justify-content: center;
+}
+
+.current-city-main {
+    justify-content: left;
+    width: 400px;
 }
 
 .current-city {
@@ -24,6 +29,11 @@ header {
 .logo {
     width: 60px;
     margin: 10px;
+}
+
+.favourites-header {
+    width: 100%;
+    margin: 0 15px 0 15px;
 }
 
 .city {
@@ -39,9 +49,17 @@ header {
     float: left;
 }
 
+.current-city-name {
+    flex: 1 100%;
+}
+
 .temperature {
     margin: 10px;
     float: left;
+}
+
+.current-city-temperature {
+    font-size: 3em;
 }
 
 .weather-picture {
@@ -49,8 +67,18 @@ header {
     margin-left: 10px;
 }
 
+.current-city .weather-picture {
+    width: 80px;
+}
+
 .weather-data {
     clear: both;
+}
+
+.current-city-weather-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .weather-data-title {
