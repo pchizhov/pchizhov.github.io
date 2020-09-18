@@ -2,7 +2,7 @@ body {
     font-family: "Iowan Old Style";
 }
 
-header, .favourites, .current-city, .current-city-main {
+header, .favourites, .current-city {
     display: flex;
     flex-wrap: wrap;
 }
@@ -49,17 +49,15 @@ header {
     float: left;
 }
 
-.current-city-name {
-    flex: 1 100%;
-}
-
 .temperature {
     margin: 10px;
     float: left;
 }
 
 .current-city-temperature {
-    font-size: 3em;
+    font-size: 60px;
+    float: left;
+    margin: 0;
 }
 
 .weather-picture {
@@ -69,6 +67,8 @@ header {
 
 .current-city .weather-picture {
     width: 80px;
+    float: left;
+    margin-left: 20px;
 }
 
 .weather-data {
