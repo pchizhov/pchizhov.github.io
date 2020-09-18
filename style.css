@@ -22,8 +22,7 @@ header {
 }
 
 .current-city {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 20px auto 0 auto;
 }
 
 .logo {
@@ -47,6 +46,10 @@ header {
 .city-name {
     margin: 10px 10px 10px 0;
     float: left;
+}
+
+.current-city-name {
+    margin-top: 0;
 }
 
 .temperature {
@@ -77,6 +80,7 @@ header {
 
 .current-city-weather-data {
     display: flex;
+    width: 400px;
     flex-direction: column;
     justify-content: center;
 }
