@@ -2,7 +2,7 @@ body {
     font-family: "Iowan Old Style";
 }
 
-header, .favourites, .current-city {
+header, .current-city, .favourites-main {
     display: flex;
     flex-wrap: wrap;
 }
@@ -12,27 +12,60 @@ header {
     height: 85px;
 }
 
-.favourites, .current-city {
-    justify-content: center;
-}
-
-.current-city-main {
-    justify-content: left;
-    width: 400px;
-}
-
-.current-city {
-    margin: 20px auto 0 auto;
-}
-
 .logo {
     width: 60px;
     margin: 10px;
 }
 
+.current-city {
+    justify-content: center;
+    margin: 20px auto 0 auto;
+}
+
+.current-city-header {
+    width: 400px;
+}
+
+.current-city-name {
+    margin-top: 0;
+}
+
+.current-city-temperature {
+    font-size: 60px;
+    float: left;
+    margin: 0;
+}
+
+.current-city-weather-picture {
+    width: 80px;
+    float: left;
+    margin-left: 20px;
+}
+
+.current-city-main {
+    display: flex;
+    width: 400px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.favourites {
+    margin: 0 auto 0 auto;
+}
+
 .favourites-header {
     width: 100%;
-    margin: 0 15px 0 15px;
+}
+
+.favourites-main {
+    justify-content: center;
+    align-content: start;
+    width: auto;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
 }
 
 .city {
@@ -43,46 +76,38 @@ header {
     width: 400px;
 }
 
+.city-header {
+    display: flex;
+    align-items: center;
+}
+
 .city-name {
-    margin: 10px 10px 10px 0;
-    float: left;
-}
-
-.current-city-name {
-    margin-top: 0;
-}
-
-.temperature {
-    margin: 10px;
-    float: left;
-}
-
-.current-city-temperature {
-    font-size: 60px;
-    float: left;
+    font-size: 1.5em;
+    font-weight: bold;
     margin: 0;
 }
 
+.temperature {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0 0 0 0.5em;
+}
+
 .weather-picture {
-    width: 50px;
-    margin-left: 10px;
+    width: 44px;
+    margin-left: 1em;
 }
 
-.current-city .weather-picture {
-    width: 80px;
-    float: left;
-    margin-left: 20px;
-}
-
-.weather-data {
+.city-main {
     clear: both;
 }
 
-.current-city-weather-data {
-    display: flex;
-    width: 400px;
-    flex-direction: column;
-    justify-content: center;
+.weather-data-line {
+    margin-top: 5px;
+    background-color: indianred;
+    color: aliceblue;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 .weather-data-title {
@@ -96,34 +121,18 @@ header {
     margin: 0;
 }
 
-.weather-data-line {
-    margin-top: 5px;
-    background-color: indianred;
-    color: aliceblue;
-    padding: 5px;
-    border-radius: 5px;
-}
-
-.clearfix:after {
-    clear: both;
-    display: block;
-    content: "";
-}
-
-label {
-    float: right;
-    font-size: 200%;
+button {
+    background-color: transparent;
+    border: none;
+    font-size: 250%;
     width: 1em;
     height: 1em;
     line-height: 1;
     cursor: pointer;
     text-align: center;
+    margin-left: auto;
 }
 
-label:hover {
+button:hover {
     color: indianred;
-}
-
-.close {
-    display: none;
 }

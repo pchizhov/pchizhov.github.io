@@ -11,156 +11,164 @@
         <img src="images/logo.svg" alt="weather logo" class="logo">
         <h1>The Weather App</h1>
     </header>
-    <div class="current-city">
-        <div class="current-city-main clearfix">
-            <h1 class="current-city-name">Saint Petersburg</h1>
-            <h1 class="current-city-temperature">8˚C</h1>
-            <img class="weather-picture" src="images/weather/wind-direction.svg">
-        </div>
-        <div class="current-city-weather-data">
-            <div class="weather-data-line clearfix">
-                <p class="weather-data-title">Wind</p>
-                <p class="weather-data-value">10.0 m/s, North-northwest</p>
+    <main>
+        <section class="current-city">
+            <div class="current-city-header">
+                <h2>Weather here</h2>
+                <h3 class="current-city-name">Saint Petersburg</h3>
+                <p class="current-city-temperature">8˚C</p>
+                <img class="current-city-weather-picture" src="images/weather/wind-direction.svg">
             </div>
-            <div class="weather-data-line clearfix">
-                <p class="weather-data-title">Cloudiness</p>
-                <p class="weather-data-value">Broken clouds</p>
-            </div>
-            <div class="weather-data-line clearfix">
-                <p class="weather-data-title">Pressure</p>
-                <p class="weather-data-value">1013 hpa</p>
-            </div>
-            <div class="weather-data-line clearfix">
-                <p class="weather-data-title">Humidity</p>
-                <p class="weather-data-value">53%</p>
-            </div>
-            <div class="weather-data-line clearfix">
-                <p class="weather-data-title">Coordinates</p>
-                <p class="weather-data-value">[59.88, 30.42]</p>
-            </div>
-        </div>
-    </div>
-    <section class="favourites">
-        <div class="favourites-header">
-            <h1>Favourites</h1>
-
-        </div>
-        <div class="city">
-            <h1 class="city-name">Moscow</h1>
-            <h1 class="temperature">5˚C</h1>
-            <img class="weather-picture" src="images/weather/smallrain.svg" alt="small rain icon">
-            <input type="checkbox" id="close1" class="close">
-            <label for="close1">&times;</label>
-            <div class="weather-data">
-                <div class="weather-data-line clearfix">
+            <ul class="current-city-main">
+                <li class="weather-data-line">
                     <p class="weather-data-title">Wind</p>
-                    <p class="weather-data-value">Moderate breeze, 6.0 m/s, North-northwest</p>
-                </div>
-                <div class="weather-data-line clearfix">
+                    <p class="weather-data-value">10.0 m/s, North-northwest</p>
+                </li>
+                <li class="weather-data-line">
                     <p class="weather-data-title">Cloudiness</p>
                     <p class="weather-data-value">Broken clouds</p>
-                </div>
-                <div class="weather-data-line clearfix">
+                </li>
+                <li class="weather-data-line">
                     <p class="weather-data-title">Pressure</p>
                     <p class="weather-data-value">1013 hpa</p>
-                </div>
-                <div class="weather-data-line clearfix">
+                </li>
+                <li class="weather-data-line">
                     <p class="weather-data-title">Humidity</p>
                     <p class="weather-data-value">53%</p>
-                </div>
-                <div class="weather-data-line clearfix">
+                </li>
+                <li class="weather-data-line">
                     <p class="weather-data-title">Coordinates</p>
                     <p class="weather-data-value">[59.88, 30.42]</p>
+                </li>
+            </ul>
+        </section>
+        <section class="favourites">
+            <div class="favourites-header">
+                <h2>Favourites</h2>
+            </div>
+            <div class="favourites-main">
+                <div class="city">
+                    <div class="city-header">
+                        <h3 class="city-name">Moscow</h3>
+                        <p class="temperature">5˚C</p>
+                        <img class="weather-picture" src="images/weather/smallrain.svg" alt="small rain icon">
+                        <button>&times;</button>
+                    </div>
+                    <ul class="city-main">
+                        <li class="weather-data-line">
+                            <p class="weather-data-title">Wind</p>
+                            <p class="weather-data-value">Moderate breeze, 6.0 m/s, North-northwest</p>
+                        </li>
+                        <li class="weather-data-line">
+                            <p class="weather-data-title">Cloudiness</p>
+                            <p class="weather-data-value">Broken clouds</p>
+                        </li>
+                        <li class="weather-data-line">
+                            <p class="weather-data-title">Pressure</p>
+                            <p class="weather-data-value">1013 hpa</p>
+                        </li>
+                        <li class="weather-data-line">
+                            <p class="weather-data-title">Humidity</p>
+                            <p class="weather-data-value">53%</p>
+                        </li>
+                        <li class="weather-data-line">
+                            <p class="weather-data-title">Coordinates</p>
+                            <p class="weather-data-value">[59.88, 30.42]</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="city">
+                    <div class="city-header">
+                        <h3 class="city-name">London</h3>
+                        <p class="temperature">3˚C</p>
+                        <img class="weather-picture" src="images/weather/sun.svg" alt="sun icon">
+                        <button>&times;</button>
+                    </div>
+                    <ul class="city-main">
+                        <li class="weather-data-line">
+                            <p class="weather-data-title">Wind</p>
+                            <p class="weather-data-value">Breeze, 4.0 m/s, North</p>
+                        </li>
+                        <li class="weather-data-line">
+                            <p class="weather-data-title">Cloudiness</p>
+                            <p class="weather-data-value">Broken clouds</p>
+                        </li>
+                        <li class="weather-data-line">
+                            <p class="weather-data-title">Pressure</p>
+                            <p class="weather-data-value">1012 hpa</p>
+                        </li>
+                        <li class="weather-data-line">
+                            <p class="weather-data-title">Humidity</p>
+                            <p class="weather-data-value">65%</p>
+                        </li>
+                        <li class="weather-data-line">
+                            <p class="weather-data-title">Coordinates</p>
+                            <p class="weather-data-value">[59.88, 30.42]</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="city">
+                    <div class="city-header">
+                        <h3 class="city-name">Helsinki</h3>
+                        <p class="temperature">5˚C</p>
+                        <img class="weather-picture" src="images/weather/storm.svg" alt="storm icon">
+                        <button>&times;</button>
+                    </div>
+                    <ul class="city-main">
+                        <li class="weather-data-line">
+                            <p class="weather-data-title">Wind</p>
+                            <p class="weather-data-value">Moderate breeze, 6.0 m/s, North-northwest</p>
+                        </li>
+                        <li class="weather-data-line">
+                            <p class="weather-data-title">Cloudiness</p>
+                            <p class="weather-data-value">Broken clouds</p>
+                        </li>
+                        <li class="weather-data-line">
+                            <p class="weather-data-title">Pressure</p>
+                            <p class="weather-data-value">1013 hpa</p>
+                        </li>
+                        <li class="weather-data-line">
+                            <p class="weather-data-title">Humidity</p>
+                            <p class="weather-data-value">53%</p>
+                        </li>
+                        <li class="weather-data-line">
+                            <p class="weather-data-title">Coordinates</p>
+                            <p class="weather-data-value">[59.88, 30.42]</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="city">
+                    <div class="city-header">
+                        <h3 class="city-name">Kathmandu</h3>
+                        <p class="temperature">25˚C</p>
+                        <img class="weather-picture" src="images/weather/moon.svg" alt="moon icon">
+                        <button>&times;</button>
+                    </div>
+                    <ul class="city-main">
+                        <li class="weather-data-line">
+                            <p class="weather-data-title">Wind</p>
+                            <p class="weather-data-value">Still, 0.1 m/s, North-northwest</p>
+                        </li>
+                        <li class="weather-data-line">
+                            <p class="weather-data-title">Cloudiness</p>
+                            <p class="weather-data-value">Clear</p>
+                        </li>
+                        <li class="weather-data-line">
+                            <p class="weather-data-title">Pressure</p>
+                            <p class="weather-data-value">1010 hpa</p>
+                        </li>
+                        <li class="weather-data-line">
+                            <p class="weather-data-title">Humidity</p>
+                            <p class="weather-data-value">65%</p>
+                        </li>
+                        <li class="weather-data-line">
+                            <p class="weather-data-title">Coordinates</p>
+                            <p class="weather-data-value">[59.88, 30.42]</p>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </div>
-        <div class="city">
-            <h1 class="city-name">London</h1>
-            <h1 class="temperature">3˚C</h1>
-            <img class="weather-picture" src="images/weather/sun.svg" alt="sun icon">
-            <input type="checkbox" id="close2" class="close">
-            <label for="close2">&times;</label>
-            <div class="weather-data">
-                <div class="weather-data-line clearfix">
-                    <p class="weather-data-title">Wind</p>
-                    <p class="weather-data-value">Breeze, 4.0 m/s, North</p>
-                </div>
-                <div class="weather-data-line clearfix">
-                    <p class="weather-data-title">Cloudiness</p>
-                    <p class="weather-data-value">Broken clouds</p>
-                </div>
-                <div class="weather-data-line clearfix">
-                    <p class="weather-data-title">Pressure</p>
-                    <p class="weather-data-value">1012 hpa</p>
-                </div>
-                <div class="weather-data-line clearfix">
-                    <p class="weather-data-title">Humidity</p>
-                    <p class="weather-data-value">65%</p>
-                </div>
-                <div class="weather-data-line clearfix">
-                    <p class="weather-data-title">Coordinates</p>
-                    <p class="weather-data-value">[59.88, 30.42]</p>
-                </div>
-            </div>
-        </div>
-        <div class="city">
-            <h1 class="city-name">Helsinki</h1>
-            <h1 class="temperature">5˚C</h1>
-            <img class="weather-picture" src="images/weather/storm.svg" alt="storm icon">
-            <input type="checkbox" id="close3" class="close">
-            <label for="close3">&times;</label>
-            <div class="weather-data">
-                <div class="weather-data-line clearfix">
-                    <p class="weather-data-title">Wind</p>
-                    <p class="weather-data-value">Moderate breeze, 6.0 m/s, North-northwest</p>
-                </div>
-                <div class="weather-data-line clearfix">
-                    <p class="weather-data-title">Cloudiness</p>
-                    <p class="weather-data-value">Broken clouds</p>
-                </div>
-                <div class="weather-data-line clearfix">
-                    <p class="weather-data-title">Pressure</p>
-                    <p class="weather-data-value">1013 hpa</p>
-                </div>
-                <div class="weather-data-line clearfix">
-                    <p class="weather-data-title">Humidity</p>
-                    <p class="weather-data-value">53%</p>
-                </div>
-                <div class="weather-data-line clearfix">
-                    <p class="weather-data-title">Coordinates</p>
-                    <p class="weather-data-value">[59.88, 30.42]</p>
-                </div>
-            </div>
-        </div>
-        <div class="city">
-            <h1 class="city-name">Kathmandu</h1>
-            <h1 class="temperature">25˚C</h1>
-            <img class="weather-picture" src="images/weather/moon.svg" alt="moon icon">
-            <input type="checkbox" id="close4" class="close">
-            <label for="close3">&times;</label>
-            <div class="weather-data">
-                <div class="weather-data-line clearfix">
-                    <p class="weather-data-title">Wind</p>
-                    <p class="weather-data-value">Still, 0.1 m/s, North-northwest</p>
-                </div>
-                <div class="weather-data-line clearfix">
-                    <p class="weather-data-title">Cloudiness</p>
-                    <p class="weather-data-value">Clear</p>
-                </div>
-                <div class="weather-data-line clearfix">
-                    <p class="weather-data-title">Pressure</p>
-                    <p class="weather-data-value">1010 hpa</p>
-                </div>
-                <div class="weather-data-line clearfix">
-                    <p class="weather-data-title">Humidity</p>
-                    <p class="weather-data-value">65%</p>
-                </div>
-                <div class="weather-data-line clearfix">
-                    <p class="weather-data-title">Coordinates</p>
-                    <p class="weather-data-value">[59.88, 30.42]</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 </body>
 </html>
