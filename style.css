@@ -2,7 +2,7 @@ body {
     font-family: "Iowan Old Style";
 }
 
-header, .current-city, .favourites-main {
+header, .favourites-main {
     display: flex;
     flex-wrap: wrap;
 }
@@ -18,62 +18,117 @@ header {
 }
 
 .current-city {
-    justify-content: center;
-    margin: 20px auto 0 auto;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .current-city-header {
-    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.current-city-name {
-    margin-top: 0;
+/*@media only screen and (max-device-width: 480px) {*/
+    .refresh {
+        content: "Refresh";
+    }
+
+
+/*}*/
+
+.current-city-main {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.current-city-main-info {
+    display: flex;
+    align-items: center;
+    align-content: stretch;
+    height: 100%;
+    flex-wrap: wrap;
+}
+
+.current-city-main h3 {
+    margin: 0;
+    width: 100%;
 }
 
 .current-city-temperature {
     font-size: 60px;
-    float: left;
     margin: 0;
 }
 
 .current-city-weather-picture {
     width: 80px;
-    float: left;
     margin-left: 20px;
 }
 
-.current-city-main {
-    display: flex;
-    width: 400px;
-    flex-direction: column;
-    justify-content: center;
-}
-
 .favourites {
-    margin: 0 auto 0 auto;
+    max-width: 95%;
+    margin: 0 auto;
 }
 
 .favourites-header {
-    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 95%;
+    margin: 0 auto;
+}
+
+form {
+    margin-left: auto;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    border-color: indianred;
+    border-width: 2px;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    font-weight: bold;
+    border-color: indianred;
+    padding: 5px;
+}
+
+input[type="submit"]:hover {
+    background-color: indianred;
+    color: white;
 }
 
 .favourites-main {
     justify-content: center;
     align-content: start;
-    width: auto;
+    display: inline-flex;
 }
 
 ul {
-    padding: 0;
-    margin: 0;
+    padding-left: 0;
+    margin-left: 0;
 }
 
-.city {
+li {
+    list-style-type: none;
+}
+
+.city, .empty-city {
     border: 2px solid indianred;
     padding: 10px;
     border-radius: 5px;
     margin: 10px;
     width: 400px;
+}
+
+.empty-city {
+    border-color: transparent;
 }
 
 .city-header {
@@ -99,10 +154,11 @@ ul {
 }
 
 .city-main {
-    clear: both;
+    width: 400px;
 }
 
 .weather-data-line {
+    display: flex;
     margin-top: 5px;
     background-color: indianred;
     color: aliceblue;
@@ -111,17 +167,15 @@ ul {
 }
 
 .weather-data-title {
-    float: left;
     margin: 0;
     font-weight: bold;
 }
 
 .weather-data-value {
-    float: right;
-    margin: 0;
+    margin: 0 0 0 auto;
 }
 
-button {
+.close {
     background-color: transparent;
     border: none;
     font-size: 250%;
@@ -133,6 +187,6 @@ button {
     margin-left: auto;
 }
 
-button:hover {
+.close:hover {
     color: indianred;
 }
