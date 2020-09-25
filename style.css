@@ -57,6 +57,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 button {
@@ -154,16 +155,12 @@ li {
     list-style-type: none;
 }
 
-.city, .empty-city {
+.city {
     border: 2px solid indianred;
     padding: 10px;
     border-radius: 5px;
     margin: 10px;
-    width: 400px;
-}
-
-.empty-city {
-    border-color: transparent;
+    width: 390px;
 }
 
 .city-header {
@@ -186,10 +183,6 @@ li {
 .weather-picture {
     width: 44px;
     margin-left: 1em;
-}
-
-.city-main {
-    min-width: 400px;
 }
 
 .weather-data-line {
