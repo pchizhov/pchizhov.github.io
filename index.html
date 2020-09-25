@@ -8,8 +8,10 @@
 </head>
 <body>
     <header>
-        <img src="images/logo.svg" alt="weather logo" class="logo">
-        <h1>The Weather App</h1>
+        <section class="header-wrapper">
+            <img src="images/logo.svg" alt="weather logo" class="logo">
+            <h1>The Weather App</h1>
+        </section>
     </header>
     <main>
         <section class="current-city">
@@ -28,7 +30,7 @@
                     <p class="current-city-temperature">8˚C</p>
                     <img class="current-city-weather-picture" src="images/weather/wind-direction.svg">
                 </div>
-                <ul class="city-main">
+                <ul class="current-city-main-ul">
                     <li class="weather-data-line">
                         <p class="weather-data-title">Wind</p>
                         <p class="weather-data-value">10.0 m/s, North-northwest</p>
@@ -58,7 +60,7 @@
                 <form method="get" class="new_city_form">
                     <label for="new_city">Add city</label>
                     <input type="text" id="new_city">
-                    <input type="submit" value="Go">
+                    <input type="submit" value="Add">
                 </form>
             </div>
             <ul class="favourites-main">
@@ -182,8 +184,6 @@
                         </li>
                     </ul>
                 </li>
-                <li class="empty-city"></li>
-                <li class="empty-city"></li>
             </ul>
         </section>
     </main>
