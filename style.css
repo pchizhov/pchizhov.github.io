@@ -32,19 +32,15 @@ button {
     border: none;
 }
 
-@media only screen and (max-device-width: 480px) {
-
-    .refresh-button {
-        display: block;
-    }
-
-    .refresh-submit {
-        display: none;
-    }
-
+.refresh-button {
+    display: none;
 }
 
-@media only screen and (max-device-width: 2160px) {
+.refresh-submit {
+    display: block;
+}
+
+@media only screen and (min-device-width: 768px) {
 
     .refresh-button {
         display: none;
