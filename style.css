@@ -28,13 +28,34 @@ header {
     align-items: center;
 }
 
-/*@media only screen and (max-device-width: 480px) {*/
-    .refresh {
-        content: "Refresh";
+button {
+    background-color: transparent;
+    border: none;
+}
+
+@media only screen and (max-device-width: 480px) {
+
+    .refresh-button {
+        display: block;
     }
 
+    .refresh-submit {
+        display: none;
+    }
 
-/*}*/
+}
+
+@media only screen and (max-device-width: 2160px) {
+
+    .refresh-button {
+        display: none;
+    }
+
+    .refresh-submit {
+        display: block;
+    }
+
+}
 
 .current-city-main {
     align-items: center;
@@ -176,8 +197,6 @@ li {
 }
 
 .close {
-    background-color: transparent;
-    border: none;
     font-size: 250%;
     width: 1em;
     height: 1em;
