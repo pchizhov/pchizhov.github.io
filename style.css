@@ -43,11 +43,11 @@ button {
 @media only screen and (min-device-width: 768px) {
 
     .refresh-button {
-        display: none;
+        display: block;
     }
 
     .refresh-submit {
-        display: block;
+        display: none;
     }
 
 }
