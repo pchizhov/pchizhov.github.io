@@ -2,9 +2,8 @@ body {
     font-family: "Iowan Old Style";
 }
 
-header, .favourites-main {
+header {
     display: flex;
-    flex-wrap: wrap;
 }
 
 header {
@@ -128,7 +127,8 @@ input[type="submit"]:hover {
 .favourites-main {
     justify-content: center;
     align-content: start;
-    display: inline-flex;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 ul {
