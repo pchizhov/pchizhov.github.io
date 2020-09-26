@@ -203,7 +203,7 @@ li {
     margin: 0 0 0 auto;
 }
 
-.close {
+button {
     font-size: 250%;
     width: 1em;
     height: 1em;
@@ -213,6 +213,6 @@ li {
     margin-left: auto;
 }
 
-.close:hover {
+button:hover {
     color: indianred;
 }
