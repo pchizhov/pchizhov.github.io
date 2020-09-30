@@ -38,7 +38,7 @@ function addNewCity() {
     let form = document.forms.namedItem('add_city');
     const formData = new FormData(form);
     const cityName = formData.get('new_city').toString();
-    form.getElementById('new_city').innerText = '';
+    form.reset();
     requestWeather(['q=' + cityName]).then((jsonResult) => {
         localStorage.setItem(cityName, '');
         appendCity(jsonResult);
