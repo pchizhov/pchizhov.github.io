@@ -11,20 +11,18 @@ function requestWeather(queryParams) {
 
 function getLocation() {
     let currentLocation = navigator.geolocation;
-    let queryParams = ['q=Saint Petersburg'];
     if (currentLocation) {
         currentLocation.getCurrentPosition(
             (position) => {
-                queryParams = [`lat=${position.coords.latitude}`, `lon=${position.coords.longitude}`];
+                fillCurrentCity([`lat=${position.coords.latitude}`, `lon=${position.coords.longitude}`]);
             },
             (error) => {
-                console.log(error.message);
+                fillCurrentCity(['q=Saint Petersburg']);
             }
-        )
+        );
+        return;
     }
-    requestWeather(queryParams).then((jsonResult) => {
-        fillCurrentCity(jsonResult);
-    });
+    fillCurrentCity(['q=Saint Petersburg']);
 }
 
 function addSavedCities() {
@@ -40,23 +38,25 @@ function addNewCity() {
     let form = document.forms.namedItem('add_city');
     const formData = new FormData(form);
     const cityName = formData.get('new_city').toString();
-    localStorage.setItem(cityName, '');
     form.getElementById('new_city').innerText = '';
     requestWeather(['q=' + cityName]).then((jsonResult) => {
+        localStorage.setItem(cityName, '');
         appendCity(jsonResult);
     });
 }
 
-function fillCurrentCity(jsonResult) {
-    document.getElementsByClassName('current-city-main')[0].innerHTML =
-        '<div class="current-city-main-info">\n' +
-        `    <h3 class="city-name">${jsonResult.name}</h3>\n` +
-        `    <p class="current-city-temperature">${toCelsius(jsonResult.main.temp)}˚C</p>\n` +
-        `    <img class="current-city-weather-picture" src="images/weather/${getIcon(jsonResult)}.svg">\n` +
-        '</div>\n' +
-        '<ul class="current-city-main-ul">\n' +
-        fillCityUl(jsonResult) +
-        '</ul>';
+function fillCurrentCity(queryParams) {
+    requestWeather(queryParams).then((jsonResult) => {
+        document.getElementsByClassName('current-city-main')[0].innerHTML =
+            '<div class="current-city-main-info">\n' +
+            `    <h3 class="city-name">${jsonResult.name}</h3>\n` +
+            `    <p class="current-city-temperature">${toCelsius(jsonResult.main.temp)}˚C</p>\n` +
+            `    <img class="current-city-weather-picture" src="images/weather/${getIcon(jsonResult)}.svg">\n` +
+            '</div>\n' +
+            '<ul class="current-city-main-ul">\n' +
+            fillCityUl(jsonResult) +
+            '</ul>';
+    });
 }
 
 function appendCity(jsonResult) {
