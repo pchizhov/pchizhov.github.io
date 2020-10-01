@@ -2,6 +2,10 @@ function toCelsius(kelvin) {
     return Math.floor(kelvin - 273);
 }
 
+function sanitize(cityName) {
+    return cityName.split(' ').join('-');
+}
+
 function getIcon(jsonResult) {
     // todo: weather icons: time, cloudiness, rain
     if (jsonResult.wind.speed > 10) {

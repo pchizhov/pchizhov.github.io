@@ -40,9 +40,16 @@ function addNewCity() {
     const cityName = formData.get('new_city').toString();
     form.reset();
     requestWeather(['q=' + cityName]).then((jsonResult) => {
-        localStorage.setItem(cityName, '');
-        appendCity(jsonResult);
+        if (jsonResult) {
+            localStorage.setItem(cityName, '');
+            appendCity(jsonResult);
+        }
     });
+}
+
+function removeCity(cityName) {
+    localStorage.removeItem(cityName.toLowerCase());
+    document.getElementById(sanitize(cityName)).remove();
 }
 
 function fillCurrentCity(queryParams) {
@@ -62,12 +69,13 @@ function fillCurrentCity(queryParams) {
 function appendCity(jsonResult) {
     let newCity = document.createElement('li');
     newCity.className = 'city';
+    newCity.id = sanitize(jsonResult.name);
     const imageName = getIcon(jsonResult);
     newCity.innerHTML = '<div class="city-header">\n' +
         `                    <h3 class="city-name">${jsonResult.name}</h3>\n` +
         `                    <p class="temperature">${toCelsius(jsonResult.main.temp)}˚C</p>\n` +
         `                    <img class="weather-picture" src="images/weather/${imageName}.svg" alt="${imageName} icon">\n` +
-        '                    <button class="close" onclick="removeCity">&times;</button>\n' +
+        `                    <button class="close" onclick="removeCity(\'${jsonResult.name}\');">&times;</button>\n` +
         '                </div>\n' +
         '                <ul class="city-main">\n' + fillCityUl(jsonResult) +
         '                </ul>';
