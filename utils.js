@@ -1,7 +1,3 @@
-function toCelsius(kelvin) {
-    return Math.floor(kelvin - 273);
-}
-
 function sanitize(cityName) {
     return cityName.split(' ').join('-');
 }

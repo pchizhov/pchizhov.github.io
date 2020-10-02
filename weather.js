@@ -13,6 +13,7 @@ addCityForm.addEventListener('submit', (event) => {
 
 function requestWeather(queryParams) {
     const base = 'https://api.openweathermap.org/data/2.5/weather';
+    queryParams.push('units=metric');
     queryParams.push('appid=f80f663722c0d3dd6beacd446c31524a');
     const url = base + '?' + queryParams.join('&');
     return fetch(url).then((response) => {
@@ -83,7 +84,7 @@ function fillCurrentCity(queryParams) {
         document.getElementsByClassName('current-city-main')[0].innerHTML = `
             <div class="current-city-main-info">
                 <h3 class="city-name">${jsonResult.name}</h3>
-                <p class="current-city-temperature">${toCelsius(jsonResult.main.temp)}˚C</p>
+                <p class="current-city-temperature">${Math.floor(jsonResult.main.temp)}˚C</p>
                 <img class="current-city-weather-picture" src="images/weather/${getIcon(jsonResult)}.svg">
             </div>
             <ul class="current-city-main-ul">
@@ -106,7 +107,7 @@ function appendCity(jsonResult, newCity) {
     const imageName = getIcon(jsonResult);
     newCity.innerHTML = `<div class="city-header">
                              <h3 class="city-name">${cityName}</h3>
-                             <p class="temperature">${toCelsius(jsonResult.main.temp)}˚C</p>
+                             <p class="temperature">${Math.floor(jsonResult.main.temp)}˚C</p>
                              <img class="weather-picture" src="images/weather/${imageName}.svg" alt="${imageName} icon">
                              <button class="close" onclick="removeCity(\'${cityName}\');">&times;</button>
                          </div>
