@@ -5,11 +5,14 @@ function requestWeather(queryParams) {
     return fetch(url).then((response) => {
         if (response.ok) {
             return response.json();
+        } else {
+            alert('Something went wrong: cannot find this place')
         }
     });
 }
 
 function getLocation() {
+    fillCurrentCityLoader();
     let currentLocation = navigator.geolocation;
     if (currentLocation) {
         currentLocation.getCurrentPosition(
@@ -27,14 +30,16 @@ function getLocation() {
 
 function addSavedCities() {
     for(let i=0; i < localStorage.length; i++) {
+        const newCity = appendCityLoader();
         let key = localStorage.key(i);
         requestWeather(['q=' + key]).then((jsonResult) => {
-            appendCity(jsonResult);
+            appendCity(jsonResult, newCity);
         });
     }
 }
 
 function addNewCity() {
+    const newCity = appendCityLoader();
     let form = document.forms.namedItem('add_city');
     const formData = new FormData(form);
     const cityName = formData.get('new_city').toString();
@@ -42,7 +47,9 @@ function addNewCity() {
     requestWeather(['q=' + cityName]).then((jsonResult) => {
         if (jsonResult) {
             localStorage.setItem(cityName, '');
-            appendCity(jsonResult);
+            appendCity(jsonResult, newCity);
+        } else {
+            newCity.remove();
         }
     });
 }
@@ -50,6 +57,10 @@ function addNewCity() {
 function removeCity(cityName) {
     localStorage.removeItem(cityName.toLowerCase());
     document.getElementById(sanitize(cityName)).remove();
+}
+
+function fillCurrentCityLoader() {
+    document.getElementsByClassName('current-city-main')[0].innerHTML = '<div class="lds-dual-ring"></div>';
 }
 
 function fillCurrentCity(queryParams) {
@@ -66,9 +77,15 @@ function fillCurrentCity(queryParams) {
     });
 }
 
-function appendCity(jsonResult) {
+function appendCityLoader() {
     let newCity = document.createElement('li');
     newCity.className = 'city';
+    newCity.innerHTML = '<div class="lds-dual-ring"></div>';
+    document.getElementsByClassName('favourites-main')[0].appendChild(newCity);
+    return newCity;
+}
+
+function appendCity(jsonResult, newCity) {
     newCity.id = sanitize(jsonResult.name);
     const imageName = getIcon(jsonResult);
     newCity.innerHTML = '<div class="city-header">\n' +
@@ -79,7 +96,6 @@ function appendCity(jsonResult) {
         '                </div>\n' +
         '                <ul class="city-main">\n' + fillCityUl(jsonResult) +
         '                </ul>';
-    document.getElementsByClassName('favourites-main')[0].appendChild(newCity);
 }
 
 function fillCityUl(jsonResult) {
