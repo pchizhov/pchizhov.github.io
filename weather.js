@@ -1,3 +1,16 @@
+let refreshForm = document.forms.namedItem('refresh');
+let addCityForm = document.forms.namedItem('add_city');
+
+refreshForm.addEventListener('submit', (event) => {
+    getLocation();
+    event.preventDefault();
+});
+
+addCityForm.addEventListener('submit', (event) => {
+    addNewCity();
+    event.preventDefault();
+});
+
 function requestWeather(queryParams) {
     const base = 'https://api.openweathermap.org/data/2.5/weather';
     queryParams.push('appid=f80f663722c0d3dd6beacd446c31524a');
@@ -6,7 +19,7 @@ function requestWeather(queryParams) {
         if (response.ok) {
             return response.json();
         } else {
-            alert('Something went wrong: cannot find this place')
+            alert('Something went wrong: cannot find this place');
         }
     });
 }
@@ -29,25 +42,27 @@ function getLocation() {
 }
 
 function addSavedCities() {
-    for(let i=0; i < localStorage.length; i++) {
+    for (let i=0; i < localStorage.length; i++) {
         const newCity = appendCityLoader();
         let key = localStorage.key(i);
         requestWeather(['q=' + key]).then((jsonResult) => {
-            appendCity(jsonResult, newCity, key);
+            appendCity(jsonResult, newCity);
         });
     }
 }
 
 function addNewCity() {
-    const newCity = appendCityLoader();
-    let form = document.forms.namedItem('add_city');
-    const formData = new FormData(form);
+    const formData = new FormData(addCityForm);
     const cityName = formData.get('new_city').toString();
-    form.reset();
+    addCityForm.reset();
+    if (localStorage.hasOwnProperty(cityName)) {
+        return;
+    }
+    const newCity = appendCityLoader();
     requestWeather(['q=' + cityName]).then((jsonResult) => {
-        if (jsonResult) {
-            localStorage.setItem(cityName, '');
-            appendCity(jsonResult, newCity, cityName);
+        if (jsonResult && !localStorage.hasOwnProperty(jsonResult.name)) {
+            localStorage.setItem(jsonResult.name, '');
+            appendCity(jsonResult, newCity);
         } else {
             newCity.remove();
         }
@@ -65,15 +80,15 @@ function fillCurrentCityLoader() {
 
 function fillCurrentCity(queryParams) {
     requestWeather(queryParams).then((jsonResult) => {
-        document.getElementsByClassName('current-city-main')[0].innerHTML =
-            '<div class="current-city-main-info">\n' +
-            `    <h3 class="city-name">${jsonResult.name}</h3>\n` +
-            `    <p class="current-city-temperature">${toCelsius(jsonResult.main.temp)}˚C</p>\n` +
-            `    <img class="current-city-weather-picture" src="images/weather/${getIcon(jsonResult)}.svg">\n` +
-            '</div>\n' +
-            '<ul class="current-city-main-ul">\n' +
-            fillCityUl(jsonResult) +
-            '</ul>';
+        document.getElementsByClassName('current-city-main')[0].innerHTML = `
+            <div class="current-city-main-info">
+                <h3 class="city-name">${jsonResult.name}</h3>
+                <p class="current-city-temperature">${toCelsius(jsonResult.main.temp)}˚C</p>
+                <img class="current-city-weather-picture" src="images/weather/${getIcon(jsonResult)}.svg">
+            </div>
+            <ul class="current-city-main-ul">
+                ${fillCityUl(jsonResult)}
+            </ul>`;
     });
 }
 
@@ -85,40 +100,42 @@ function appendCityLoader() {
     return newCity;
 }
 
-function appendCity(jsonResult, newCity, cityName) {
+function appendCity(jsonResult, newCity) {
+    const cityName = jsonResult.name;
     newCity.id = sanitize(cityName);
     const imageName = getIcon(jsonResult);
-    newCity.innerHTML = '<div class="city-header">\n' +
-        `                    <h3 class="city-name">${jsonResult.name}</h3>\n` +
-        `                    <p class="temperature">${toCelsius(jsonResult.main.temp)}˚C</p>\n` +
-        `                    <img class="weather-picture" src="images/weather/${imageName}.svg" alt="${imageName} icon">\n` +
-        `                    <button class="close" onclick="removeCity(\'${cityName}\');">&times;</button>\n` +
-        '                </div>\n' +
-        '                <ul class="city-main">\n' + fillCityUl(jsonResult) +
-        '                </ul>';
+    newCity.innerHTML = `<div class="city-header">
+                             <h3 class="city-name">${cityName}</h3>
+                             <p class="temperature">${toCelsius(jsonResult.main.temp)}˚C</p>
+                             <img class="weather-picture" src="images/weather/${imageName}.svg" alt="${imageName} icon">
+                             <button class="close" onclick="removeCity(\'${cityName}\');">&times;</button>
+                         </div>
+                         <ul class="city-main">
+                             ${fillCityUl(jsonResult)}
+                         </ul>`;
 }
 
 function fillCityUl(jsonResult) {
-    return '<li class="weather-data-line">\n' +
-    '           <p class="weather-data-title">Wind</p>\n' +
-    `           <p class="weather-data-value">${jsonResult.wind.speed} m/s, ${windDirection(jsonResult.wind.deg)}</p>\n` +
-    '       </li>\n' +
-    '       <li class="weather-data-line">\n' +
-    '           <p class="weather-data-title">Cloudiness</p>\n' +
-    `           <p class="weather-data-value">${jsonResult.clouds.all}%</p>\n` +
-    '       </li>\n' +
-    '       <li class="weather-data-line">\n' +
-    '           <p class="weather-data-title">Pressure</p>\n' +
-    `           <p class="weather-data-value">${jsonResult.main.pressure} hpa</p>\n` +
-    '       </li>\n' +
-    '       <li class="weather-data-line">\n' +
-    '           <p class="weather-data-title">Humidity</p>\n' +
-    `           <p class="weather-data-value">${jsonResult.main.humidity}%</p>\n` +
-    '       </li>\n' +
-    '       <li class="weather-data-line">\n' +
-    '           <p class="weather-data-title">Coordinates</p>\n' +
-    `           <p class="weather-data-value">[${jsonResult.coord.lat}, ${jsonResult.coord.lon}]</p>\n` +
-    '       </li>'
+    return `<li class="weather-data-line">
+                <p class="weather-data-title">Wind</p>
+                <p class="weather-data-value">${jsonResult.wind.speed} m/s, ${windDirection(jsonResult.wind.deg)}</p>
+            </li>
+            <li class="weather-data-line">
+                <p class="weather-data-title">Cloudiness</p>
+                <p class="weather-data-value">${jsonResult.clouds.all}%</p>
+            </li>
+            <li class="weather-data-line">
+                <p class="weather-data-title">Pressure</p>
+                <p class="weather-data-value">${jsonResult.main.pressure} hpa</p>
+            </li>
+            <li class="weather-data-line">
+                <p class="weather-data-title">Humidity</p>
+                <p class="weather-data-value">${jsonResult.main.humidity}%</p>
+            </li>
+            <li class="weather-data-line">
+                <p class="weather-data-title">Coordinates</p>
+                <p class="weather-data-value">[${jsonResult.coord.lat}, ${jsonResult.coord.lon}]</p>
+            </li>`;
 }
 
 getLocation();

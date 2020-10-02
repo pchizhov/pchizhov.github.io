@@ -17,10 +17,10 @@
         <section class="current-city">
             <div class="current-city-header">
                 <h2>Weather here:</h2>
-                <form method="get">
-                    <input type="submit" value="Refresh location" class="refresh-submit" onclick="getLocation()">
+                <form method="get" name="refresh">
+                    <input type="submit" value="Refresh location" class="refresh-submit">
+                    <button class="refresh-button">↺</button>
                 </form>
-                <button class="refresh-button" onclick="getLocation()">↺</button>
             </div>
             <div class="current-city-main"></div>
         </section>
@@ -30,7 +30,7 @@
                 <form method="get" class="new_city_form" name="add_city">
                     <label for="new_city">Add city</label>
                     <input type="text" id="new_city" name="new_city">
-                    <input type="submit" value="Add" onclick="addNewCity(); return false;">
+                    <input type="submit" value="Add">
                 </form>
             </div>
             <ul class="favourites-main"></ul>
