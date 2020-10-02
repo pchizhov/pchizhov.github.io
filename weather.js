@@ -33,7 +33,7 @@ function addSavedCities() {
         const newCity = appendCityLoader();
         let key = localStorage.key(i);
         requestWeather(['q=' + key]).then((jsonResult) => {
-            appendCity(jsonResult, newCity);
+            appendCity(jsonResult, newCity, key);
         });
     }
 }
@@ -47,7 +47,7 @@ function addNewCity() {
     requestWeather(['q=' + cityName]).then((jsonResult) => {
         if (jsonResult) {
             localStorage.setItem(cityName, '');
-            appendCity(jsonResult, newCity);
+            appendCity(jsonResult, newCity, cityName);
         } else {
             newCity.remove();
         }
@@ -55,7 +55,7 @@ function addNewCity() {
 }
 
 function removeCity(cityName) {
-    localStorage.removeItem(cityName.toLowerCase());
+    localStorage.removeItem(cityName);
     document.getElementById(sanitize(cityName)).remove();
 }
 
@@ -85,14 +85,14 @@ function appendCityLoader() {
     return newCity;
 }
 
-function appendCity(jsonResult, newCity) {
-    newCity.id = sanitize(jsonResult.name);
+function appendCity(jsonResult, newCity, cityName) {
+    newCity.id = sanitize(cityName);
     const imageName = getIcon(jsonResult);
     newCity.innerHTML = '<div class="city-header">\n' +
         `                    <h3 class="city-name">${jsonResult.name}</h3>\n` +
         `                    <p class="temperature">${toCelsius(jsonResult.main.temp)}˚C</p>\n` +
         `                    <img class="weather-picture" src="images/weather/${imageName}.svg" alt="${imageName} icon">\n` +
-        `                    <button class="close" onclick="removeCity(\'${jsonResult.name}\');">&times;</button>\n` +
+        `                    <button class="close" onclick="removeCity(\'${cityName}\');">&times;</button>\n` +
         '                </div>\n' +
         '                <ul class="city-main">\n' + fillCityUl(jsonResult) +
         '                </ul>';
