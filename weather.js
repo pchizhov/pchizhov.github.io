@@ -16,12 +16,16 @@ function requestWeather(queryParams) {
     queryParams.push('units=metric');
     queryParams.push('appid=f80f663722c0d3dd6beacd446c31524a');
     const url = base + '?' + queryParams.join('&');
-    return fetch(url).then((response) => {
+    const abortController = new AbortController();
+    const abortSignal = abortController.signal;
+    return fetch(url, { signal: abortSignal }).then((response) => {
         if (response.ok) {
             return response.json();
         } else {
             alert('Something went wrong: cannot find this place');
         }
+    }).catch(() => {
+        alert('Sorry, connection was lost.')
     });
 }
 
