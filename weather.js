@@ -25,7 +25,7 @@ function requestWeather(queryParams) {
             alert('Something went wrong: cannot find this place');
         }
     }).catch(() => {
-        location.reload();
+        alert('Your connection was lost, sorry.');
     });
 }
 
