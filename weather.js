@@ -71,7 +71,7 @@ function addNewCity() {
                 name: jsonResult.place,
             })
         }).then((response) => {
-            if (response.ok) {
+            if (response.status === 200) {
                 appendCity(jsonResult, newCity);
             } else {
                 newCity.remove();

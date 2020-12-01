@@ -61,7 +61,7 @@ app.post('/favourites', (req, res) => {
         if (result) {
             res.sendStatus(200);
         } else {
-            res.sendStatus(400)
+            res.sendStatus(208)
         }
     });
 });
