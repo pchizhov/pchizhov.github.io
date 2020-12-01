@@ -7,6 +7,8 @@
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
-    "helmet": "^4.2.0"
+    "cors": "^2.8.5",
+    "helmet": "^4.2.0",
+    "mongodb": "^3.6.3"
   }
 }

@@ -4,13 +4,13 @@ function sanitize(cityName) {
 
 function getIcon(jsonResult) {
     // todo: weather icons: time, cloudiness, rain
-    if (jsonResult.wind.speed > 10) {
+    if (jsonResult.windSpeed > 10) {
         return 'wind-direction';
     }
-    if (jsonResult.clouds.all > 70) {
+    if (jsonResult.clouds > 70) {
         return 'cloudy';
     }
-    if (jsonResult.clouds.all > 15) {
+    if (jsonResult.clouds > 15) {
         return 'sunny';
     }
     return 'sun';
