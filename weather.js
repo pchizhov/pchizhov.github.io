@@ -61,18 +61,22 @@ function addSavedCities() {
 function addNewCity() {
     const formData = new FormData(addCityForm);
     const cityName = formData.get('new_city').toString();
-    addCityForm.reset();
-    if (localStorage.hasOwnProperty(cityName)) {
-        return;
-    }
     const newCity = appendCityLoader();
+    addCityForm.reset();
     requestWeather('city', ['q=' + cityName]).then((jsonResult) => {
-        if (jsonResult && !localStorage.hasOwnProperty(jsonResult.place)) {
-            localStorage.setItem(jsonResult.place, '');
-            appendCity(jsonResult, newCity);
-        } else {
-            newCity.remove();
-        }
+        fetch('http://localhost:8080/favourites', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                name: jsonResult.place,
+            })
+        }).then((response) => {
+            if (response.ok) {
+                appendCity(jsonResult, newCity);
+            } else {
+                newCity.remove();
+            }
+        })
     });
 }
 

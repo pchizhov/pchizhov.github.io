@@ -24,7 +24,9 @@ const corsOptions = {
     optionsSuccessStatus: 200
 };
 
-app.get('/', cors(corsOptions), (req, res) => {
+app.use(cors());
+
+app.get('/', (req, res) => {
     res.sendStatus(200);
 });
 
@@ -38,15 +40,15 @@ function reply(query, res) {
     });
 }
 
-app.get('/weather/city', cors(corsOptions), (req, res) => {
+app.get('/weather/city', (req, res) => {
     reply(req.query, res);
 });
 
-app.get('/weather/coordinates', cors(corsOptions), (req, res) => {
+app.get('/weather/coordinates', (req, res) => {
     reply(req.query, res);
 });
 
-app.get('/favourites', cors(corsOptions), (req, res) => {
+app.get('/favourites', (req, res) => {
     extractCities().then((result) => {
         res.send({cities: result.map(elem => elem.name)});
     }).catch((err) => {
@@ -54,11 +56,17 @@ app.get('/favourites', cors(corsOptions), (req, res) => {
     })
 });
 
-app.post('/favourites', cors(corsOptions), (req, res) => {
-
+app.post('/favourites', (req, res) => {
+    insertCity(req.body.name).then((result) => {
+        if (result) {
+            res.sendStatus(200);
+        } else {
+            res.sendStatus(400)
+        }
+    });
 });
 
-app.delete('/favourites', cors(corsOptions), (req, res) => {
+app.delete('/favourites', (req, res) => {
 
 });
 
@@ -112,6 +120,8 @@ function insertCity(cityName) {
     return collection.find({name: cityName}).toArray().then((result) => {
         if (!result.length) {
             return collection.insertOne({name: cityName})
+        } else {
+            return false;
         }
     });
 }
