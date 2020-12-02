@@ -81,7 +81,13 @@ function addNewCity() {
 }
 
 function removeCity(cityName) {
-    localStorage.removeItem(cityName);
+    fetch('http://localhost:8080/favourites', {
+        method: 'DELETE',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            name: cityName,
+        })
+    });
     document.getElementById(sanitize(cityName)).remove();
 }
 

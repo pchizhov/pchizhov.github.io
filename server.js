@@ -67,7 +67,9 @@ app.post('/favourites', (req, res) => {
 });
 
 app.delete('/favourites', (req, res) => {
-
+    deleteCity(req.body.name).then((result) => {
+        res.sendStatus(200);
+    });
 });
 
 server.listen(port, (err) => {
