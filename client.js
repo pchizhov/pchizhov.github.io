@@ -75,8 +75,14 @@ function addNewCity() {
                 appendCity(jsonResult, newCity);
             } else {
                 newCity.remove();
+                alert('We already have this city in favourites');
             }
+        }).catch((err) => {
+            newCity.remove();
+            alert('Your connection was lost, sorry.');
         })
+    }).catch((err) => {
+        newCity.remove();
     });
 }
 
