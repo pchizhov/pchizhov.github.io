@@ -4,9 +4,9 @@ const app = express();
 const server = require('http').Server(app);
 const port = 8080;
 const helmet = require('helmet');
-const fetch = require('node-fetch');
+require('isomorphic-fetch');
 const cors = require('cors');
-const MongoClient = require('mongodb').MongoClient;
+const db = require('./db');
 
 app.use(helmet());
 app.use(bodyParser.json());
@@ -49,15 +49,15 @@ app.get('/weather/coordinates', (req, res) => {
 });
 
 app.get('/favourites', (req, res) => {
-    extractCities().then((result) => {
-        res.send({cities: result.map(elem => elem.name)});
+    db.extractCities().then((result) => {
+        res.send({cities: result});
     }).catch((err) => {
         res.sendStatus(503);
     })
 });
 
 app.post('/favourites', (req, res) => {
-    insertCity(req.body.name).then((result) => {
+    db.insertCity(req.body.name).then((result) => {
         if (result) {
             res.sendStatus(200);
         } else {
@@ -67,7 +67,7 @@ app.post('/favourites', (req, res) => {
 });
 
 app.delete('/favourites', (req, res) => {
-    deleteCity(req.body.name).then((result) => {
+    db.deleteCity(req.body.name).then((result) => {
         res.sendStatus(200);
     });
 });
@@ -114,24 +114,4 @@ function requestWeather(queryParams) {
     });
 }
 
-const mongoClient = new MongoClient('mongodb://localhost:27017/', {useNewUrlParser: true, useUnifiedTopology: true});
-mongoClient.connect();
-const collection = mongoClient.db('weather').collection('cities');
-
-function insertCity(cityName) {
-    return collection.find({name: cityName}).toArray().then((result) => {
-        if (!result.length) {
-            return collection.insertOne({name: cityName})
-        } else {
-            return false;
-        }
-    });
-}
-
-function deleteCity(cityName) {
-    return collection.deleteOne({name: cityName});
-}
-
-function extractCities() {
-    return collection.find({}).toArray()
-}
+module.exports.requestWeather = requestWeather;
