@@ -1,11 +1,16 @@
 {
   "name": "itmo2020",
   "version": "1.0.0",
+  "scripts": {
+    "test": "mocha test/*.js --exit"
+  },
   "dependencies": {
     "body-parser": "latest",
     "chai-http": "^4.3.0",
     "express": "^4.17.1",
     "fetch-mock": "^9.11.0",
+    "jsdom": "^16.4.0",
+    "mocha": "^8.2.1",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
@@ -14,8 +19,9 @@
     "cors": "^2.8.5",
     "helmet": "^4.2.0",
     "isomorphic-fetch": "^3.0.0",
-    "mocha": "^8.2.1",
+    "mock-geolocation": "^1.0.11",
     "mongodb": "^3.6.3",
+    "rewire": "^5.0.0",
     "sinon": "^9.2.2",
     "sinon-mongo": "^1.1.0"
   }

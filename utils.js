@@ -65,3 +65,9 @@ function windDirection(deg) {
     return 'North'
 
 }
+
+module.exports = {
+    windDirection: windDirection,
+    sanitize: sanitize,
+    getIcon: getIcon
+};

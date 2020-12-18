@@ -1,7 +1,7 @@
 const chai = require('chai');
 const chai_http = require('chai-http');
 chai.use(chai_http);
-const mocha = require("mocha");
+const mocha = require('mocha');
 const sinon = require('sinon');
 require('sinon-mongo');
 const afterEach = mocha.afterEach;

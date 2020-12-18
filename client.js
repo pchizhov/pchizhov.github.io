@@ -1,15 +1,23 @@
-let refreshForm = document.forms.namedItem('refresh');
-let addCityForm = document.forms.namedItem('add_city');
+var refreshForm;
+var addCityForm;
 
-refreshForm.addEventListener('submit', (event) => {
+function init() {
+    refreshForm = document.forms.namedItem('refresh');
+    addCityForm = document.forms.namedItem('add_city');
+
+    refreshForm.addEventListener('submit', (event) => {
+        getLocation();
+        event.preventDefault();
+    });
+
+    addCityForm.addEventListener('submit', (event) => {
+        addNewCity();
+        event.preventDefault();
+    });
+
     getLocation();
-    event.preventDefault();
-});
-
-addCityForm.addEventListener('submit', (event) => {
-    addNewCity();
-    event.preventDefault();
-});
+    addSavedCities();
+}
 
 function requestWeather(endpoint, queryParams) {
     const base = 'http://localhost:8080/weather/';
@@ -39,11 +47,11 @@ function getLocation() {
         );
         return;
     }
-    fillCurrentCity(['q=Saint Petersburg']);
+    fillCurrentCity('city', ['q=Saint Petersburg']);
 }
 
 function addSavedCities() {
-    fetch('http://localhost:8080/favourites').then((res) => {
+    return fetch('http://localhost:8080/favourites').then((res) => {
         if (res.ok) {
             return res.json()
         }
@@ -63,8 +71,8 @@ function addNewCity() {
     const cityName = formData.get('new_city').toString();
     const newCity = appendCityLoader();
     addCityForm.reset();
-    requestWeather('city', ['q=' + cityName]).then((jsonResult) => {
-        fetch('http://localhost:8080/favourites', {
+    return requestWeather('city', ['q=' + cityName]).then((jsonResult) => {
+        return fetch('http://localhost:8080/favourites', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -102,7 +110,7 @@ function fillCurrentCityLoader() {
 }
 
 function fillCurrentCity(endpoint, queryParams) {
-    requestWeather(endpoint, queryParams).then((jsonResult) => {
+    return requestWeather(endpoint, queryParams).then((jsonResult) => {
         document.getElementsByClassName('current-city-main')[0].innerHTML = `
             <div class="current-city-main-info">
                 <h3 class="city-name">${jsonResult.place}</h3>
@@ -161,5 +169,16 @@ function fillCityUl(jsonResult) {
             </li>`;
 }
 
-getLocation();
-addSavedCities();
+module.exports = {
+    fillCityUl: fillCityUl,
+    appendCityLoader: appendCityLoader,
+    requestWeather: requestWeather,
+    init: init,
+    appendCity: appendCity,
+    removeCity: removeCity,
+    getLocation: getLocation,
+    fillCurrentCityLoader: fillCurrentCityLoader,
+    fillCurrentCity: fillCurrentCity,
+    addSavedCities: addSavedCities,
+    addNewCity: addNewCity
+};
